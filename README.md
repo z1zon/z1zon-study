@@ -1,7 +1,10 @@
-# awesome-study
+# awesome-study 😲
 
-책 : 쏙쏙 들어오는 함수형 코딩(https://product.kyobobook.co.kr/detail/S000001952246)
+## 책 : 쏙쏙 들어오는 함수형 코딩
 
+<a href="https://product.kyobobook.co.kr/detail/S000001952246" target="_blank">
+<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791191600759.jpg" width="30%" />
+</a>
 
 ## 📚 스터디 진행방식
 
@@ -15,17 +18,58 @@
     - 옐로카드 3장 = 밥사기
     - 묻지마 불참권 2번
 
-## 🐥 스터디 참여자
+## 🐥 스터디원
 
-| 이름                                     | 한줄목표            | 옐로카드 | 묻지마 불참권 |
-|----------------------------------------|-----------------| -------- | ------------ |
-| [김효진](https://github.com/hy57in)       | 갓생살기            |        |        |
-| [고서영](https://github.com/syoung125)       |  |          |          |
-| [조찬영](https://github.com/cyjo9603)      |       |  |         |
-| [오지훈](https://github.com/hoo00nn)     |      |     |              |
+<table>
+
+<tr>
+  <td align=center>
+  <a href="https://github.com/hy57in">
+  <img src="https://avatars.githubusercontent.com/u/60775453?v=4" width="100px" />
+  <br/>
+  FE 🖥
+  <br/>
+  김효진
+  </a>
+  </td>
+
+  <td align=center>
+  <a href="https://github.com/cyjo9603">
+  <img src="https://avatars.githubusercontent.com/u/49899406?v=4" width="100px" />
+  <br/>
+  FE 🖥
+  <br/>
+  조찬영
+  </a>
+  </td>
+
+  <td align=center>
+  <a href="https://github.com/syoung125">
+  <img src="https://avatars.githubusercontent.com/u/39763891?v=4" width="100px"  />
+  <br/>
+  FE 🖥
+  <br/>
+  고서영
+  </a>
+  </td>
+
+  <td align=center>
+  <a href="https://github.com/hoo00nn">
+  <img src="https://avatars.githubusercontent.com/u/52775389?v=4" width="100px"  />
+  <br/>
+  FE 🖥
+  <br/>
+  오지훈
+  </a>
+  </td>
+
+  </tr>
+
+
+</table>
 
 ## 🗓 스터디 일정
 
-| 회차  | 일시               | 목차          | 참여자                   | 발표자                     | 비고                              |
-|-----|------------------| ------------- | ------------------------ | -------------------------- | --------------------------------- |
-| 1   | 8월 07일 (월) 22:00 |       |                       |                            |                                   |
+| 회차  | 일시               | 챕터  | 참여자 | 발표자 | 비고  |
+|-----|------------------|-----|-----|-----|-----|
+| 1   | 8월 07일 (월) 22:00 | 1   |     |     |     |
