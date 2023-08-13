@@ -54,6 +54,16 @@
   </td>
 
   <td align=center>
+  <a href="https://github.com/hoo00nn">
+  <img src="https://avatars.githubusercontent.com/u/52775389?v=4" width="100px"  />
+  <br/>
+  FE 🖥
+  <br/>
+  오지훈
+  </a>
+  </td>
+
+  <td align=center>
   <a href="https://github.com/newgardener">
   <img src="https://avatars.githubusercontent.com/u/30281850?v=4" width="100px"  />
   <br/>
