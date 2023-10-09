@@ -1,3 +1,6 @@
+
+![c](https://github.com/beerair/awesome-study/assets/49899406/f3abe1f0-a85e-4c8a-a259-86dd320e3d5e)
+
 ## 🐥 스터디원
 
 <table>
