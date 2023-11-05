@@ -1,0 +1,11 @@
+{
+  "name": "eslint-plugin-hoo00nn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}
