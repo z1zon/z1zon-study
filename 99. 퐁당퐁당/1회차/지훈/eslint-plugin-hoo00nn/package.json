@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "node need-braces.test.js"
   },
   "keywords": [],
   "author": "",
