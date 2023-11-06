@@ -20,8 +20,8 @@ const ruleTester = new RuleTester();
 
 ruleTester.run("no-test-console", rule, {
     valid: [
-        "Console.info(foo)",
-
+        // "Console.info(foo)",
+        { code: "console.log('[DEBUG] : debug')", options: [{ allow: ["log"] }] },
         // single array item
         { code: "console.info(foo)", options: [{ allow: ["info"] }] },
         { code: "console.warn(foo)", options: [{ allow: ["warn"] }] },

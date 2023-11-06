@@ -9,7 +9,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-// const astUtils = require("./utils/ast-utils");
+
 
 /**
  * Gets the property name of a given node.
@@ -94,6 +94,47 @@ function getVariableByName(initScope, name) {
     return null;
 }
 
+/**
+ * Returns the result of the string conversion applied to the evaluated value of the given expression node,
+ * if it can be determined statically.
+ *
+ * This function returns a `string` value for all `Literal` nodes and simple `TemplateLiteral` nodes only.
+ * In all other cases, this function returns `null`.
+ * @param {ASTNode} node Expression node.
+ * @returns {string|null} String value if it can be determined. Otherwise, `null`.
+ */
+function getStaticStringValue(node) {
+    switch (node.type) {
+        case "Literal":
+            if (node.value === null) {
+                if (isNullLiteral(node)) {
+                    return String(node.value); // "null"
+                }
+                if (node.regex) {
+                    return `/${node.regex.pattern}/${node.regex.flags}`;
+                }
+                if (node.bigint) {
+                    return node.bigint;
+                }
+
+                // Otherwise, this is an unknown literal. The function will return null.
+
+            } else {
+                return String(node.value);
+            }
+            break;
+        case "TemplateLiteral":
+            if (node.expressions.length === 0 && node.quasis.length === 1) {
+                return node.quasis[0].value.cooked;
+            }
+            break;
+
+        // no default
+    }
+
+    return null;
+}
+
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
@@ -134,6 +175,7 @@ module.exports = {
     create(context) {
         const options = context.options[0] || {};
         const allowed = options.allow || [];
+        // const prefix = options.prefix || [];
         const sourceCode = context.sourceCode;
 
         /**
@@ -155,8 +197,16 @@ module.exports = {
          */
         function isAllowed(node) {
             const propertyName = getStaticPropertyName(node);
+            // const message = node.parent.arguments[0].name;
+            //
+            // if(!(propertyName && allowed.includes(propertyName))) {
+            //     return false;
+            // }
 
-            return propertyName && allowed.includes(propertyName);
+            //return message.startsWith(prefix)
+
+            return propertyName && allowed.includes(propertyName)
+
         }
 
         /**
