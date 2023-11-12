@@ -175,7 +175,7 @@ module.exports = {
     create(context) {
         const options = context.options[0] || {};
         const allowed = options.allow || [];
-        // const prefix = options.prefix || [];
+        const prefix = options.prefix || [];
         const sourceCode = context.sourceCode;
 
         /**
@@ -197,13 +197,13 @@ module.exports = {
          */
         function isAllowed(node) {
             const propertyName = getStaticPropertyName(node);
-            // const message = node.parent.arguments[0].name;
-            //
-            // if(!(propertyName && allowed.includes(propertyName))) {
-            //     return false;
-            // }
+            const message = node.parent.arguments[0].name;
 
-            //return message.startsWith(prefix)
+            if(!(propertyName && allowed.includes(propertyName))) {
+                return false;
+            }
+
+            // return message.startsWith(prefix)
 
             return propertyName && allowed.includes(propertyName)
 
@@ -247,7 +247,7 @@ module.exports = {
                 const scope = sourceCode.getScope(node);
                 const consoleVar = getVariableByName(scope, "console");
                 const shadowed = consoleVar && consoleVar.defs.length > 0;
-
+                // TODO: 투두~
                 /*
                  * 'scope.through' includes all references to undefined
                  * variables. If the variable 'console' is not defined, it uses
