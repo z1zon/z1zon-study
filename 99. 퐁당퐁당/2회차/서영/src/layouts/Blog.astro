@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Confetti from '@/components/Confetti.tsx';
+import LanguageSelect from '@/components/LanguageSelect';
+import {getLangFromUrl} from '@/utils';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const pathname = Astro.url.pathname;
+const lang = getLangFromUrl(pathname)
+const {title, author} = Astro.props;
+---
+<html lang={lang}>
+  <head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}: {author}</title>
+	</head>
+  <body>
+    <main>
+      <LanguageSelect lang={lang} client:idle/>
+      <Confetti client:visible />
+      <h1 class="title">{title}</h1>
+      <slot />
+    </main>
+  </body>
+</html>
+<style>
+  .title {
+    color: orange;
+  }
+</style>
