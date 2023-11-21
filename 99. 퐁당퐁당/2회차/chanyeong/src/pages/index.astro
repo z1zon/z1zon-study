@@ -1,0 +1,31 @@
+---
+import Layout from '../components/Layout'
+import TodoForm from '../components/TodoForm'
+import TodoList from '../components/TodoList'
+
+import ReactWrapper from '../components/Wrapper/Wrapper.react'
+import VueWrapper from '../components/Wrapper/Wrapper.vue.vue'
+import SvelteWrapper from '../components/Wrapper/Wrapper.svelte.svelte'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<Layout client:load>
+			<SvelteWrapper client:load >
+				<ReactWrapper client:load  >
+					<TodoForm client:load />
+				</ReactWrapper>
+				<VueWrapper client:load >
+					<TodoList client:load />
+				</VueWrapper>
+			</SvelteWrapper>
+		</Layout>
+	</body>
+</html>

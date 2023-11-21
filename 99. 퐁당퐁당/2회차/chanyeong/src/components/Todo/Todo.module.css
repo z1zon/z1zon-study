@@ -1,0 +1,8 @@
+.todo_delete_button {
+  border: none;
+  background-color: inherit;
+}
+
+.todo_content {
+  margin-left: 4px;
+}
