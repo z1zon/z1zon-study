@@ -79,7 +79,7 @@
 | 3 | 11월 12일 (일) 15:30 | 퐁                | 효진,서영,찬영,지훈 | 지훈  | https://github.com/z1zon/z1zon-awesome-study/issues/2           |
 | 4 | 11월 13일 (월) 22:40 | 4장               | ALL | 정원  |                                |
 | 5 | 11월 20일 (월) 22:40 | 당                | ALL | 효진  | https://github.com/z1zon/z1zon-awesome-study/issues/9                               |
-| 6 | 11월 27일 (월) 22:40 | 5장               |  | 찬영  |                                |
+| 6 | 11월 27일 (월) 22:40 | 5장               | ALL | 찬영  |                                |
 | 7 | 12월 11일 (월) 22:40 | 퐁                |  | 서영  | https://github.com/z1zon/z1zon-awesome-study/issues/20                               |
 | 8 | 12월 19일 (화) 21:00 | 6장               |  | 지훈  |                                |
 |   |                   |                  |  |   |                                |
