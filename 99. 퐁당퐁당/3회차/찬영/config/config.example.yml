@@ -1,0 +1,5 @@
+naverCloud:
+  textOCR:
+    invokeUrl: 'example'
+    invokePath: 'example'
+    secretKey: 'example'
