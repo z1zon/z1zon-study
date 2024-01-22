@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat UI Screen</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      .chat-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .chat-box {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        overflow-y: scroll;
+        height: 300px;
+      }
+
+      .chat-message {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .chat-message p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .chat-input {
+        display: flex;
+        margin-top: 20px;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      .chat-input button {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .chat-input button:hover {
+        background-color: #3e8e41;
+      }
+
+      .assistant {
+        color: blue;
+      }
+
+      .intro-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vw;
+      }
+
+      .intro-container img {
+        width: 50%;
+        min-width: 300px;
+      }
+
+      #loader {
+        font-size: 25px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="intro" class="intro-container">
+      <button onclick="start()">외국인 친구와 대화하기</button>
+    </div>
+    <div id="chat" class="chat-container" style="display: none">
+      <div class="chat-box">
+        <div class="chat-message">
+          <p class="assistant">Hi, I'm Ashley.</p>
+        </div>
+      </div>
+      <div id="loader" class="loader" style="display: none">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder="Type your message here..." />
+        <button id="btn" onclick="spinner()">Send</button>
+      </div>
+    </div>
+    <script>
+      const chatBox = document.querySelector(".chat-box");
+      let userMessages = [];
+      let assistantMessages = [];
+      let threadId = "";
+
+      function spinner() {
+        document.getElementById("loader").style.display = "block";
+      }
+
+      function start() {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("chat").style.display = "block";
+      }
+
+      const createChatElement = (role, message) => {
+        const chatMessage = document.createElement("div");
+        chatMessage.classList.add("chat-message");
+        chatMessage.innerHTML = `<p class='${role}'>${message}</p>`;
+        return chatMessage;
+      };
+
+      const sendMessage = async () => {
+        const chatInput = document.querySelector(".chat-input input");
+        const userMessage = chatInput.value;
+        const messageElement = createChatElement("user", userMessage);
+        chatBox.appendChild(messageElement);
+
+        //userMessage 메세지 추가
+        userMessages.push(userMessage);
+        chatInput.value = "";
+
+        const response = await fetch("http://localhost:3000/message", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userMessage,
+            threadId,
+          }),
+        });
+
+        const data = await response.json();
+        document.getElementById("loader").style.display = "none";
+
+        //assistantMessage 메세지 추가
+        assistantMessages.push(data.assistant);
+        threadId = data.threadId;
+
+        const assistantMessageElement = createChatElement(
+          "assistant",
+          data.assistant
+        );
+        chatBox.appendChild(assistantMessageElement);
+      };
+
+      document
+        .querySelector(".chat-input button")
+        .addEventListener("click", sendMessage);
+    </script>
+  </body>
+</html>
