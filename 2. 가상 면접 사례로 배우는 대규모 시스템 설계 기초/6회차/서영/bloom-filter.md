@@ -29,7 +29,9 @@
 
 ### 2. 블룸필터에서 항목을 삭제할 수 없다
 
-??
+일반 적인 블룸 필터에서는 삭제가 불가능하지만, **Counting Bloom Filter**에서는 삭제가 가능하다
+- 필터가 삽입될 때마다 카운터를 1씩 증가시키고, 필터 에서 요소를 삭제할 때마다 카운터를 1씩 감소
+- 참고: https://medium.com/@souravkantha/introduction-to-bloom-filter-and-its-applications-7a225db17567
 
 ## 작동원리
 
