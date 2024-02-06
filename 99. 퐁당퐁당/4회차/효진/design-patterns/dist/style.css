@@ -1,0 +1,7 @@
+.iterator-item {
+    width: fit-content;
+    margin: 10px 0;
+    padding: 8px 16px;
+    background-color: beige;
+    border-radius: 8px;
+}
