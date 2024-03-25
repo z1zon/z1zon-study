@@ -58,10 +58,11 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     this.#currentQuery = query;
   }
 
+  // ⭐️
   #executeFetch(): Promise<TData | undefined> {
     this.#updateQuery();
 
-    return this.#currentQuery.fetch(this.options);
+    return this.#currentQuery.fetch();
   }
 
   // query 정보를 기반으로 result 형식으로 만들기
@@ -132,6 +133,10 @@ export class QueryObserver<TData = unknown> extends Subscribable<
       this.listeners = new Set();
       this.#currentQuery.removeObserver(this);
     }
+  }
+
+  onQueryUpdate(): void {
+    this.updateResult();
   }
 
   #notify(notifyOptions?: NotifyOptions): void {
