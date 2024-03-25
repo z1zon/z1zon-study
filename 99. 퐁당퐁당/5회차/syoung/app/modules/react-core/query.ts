@@ -78,6 +78,7 @@ export class Query<TData = unknown> {
     });
 
     const run = () => {
+      console.log("run"); // TODO: 무한 호출되지 않도록 수정
       Promise.resolve(this.options.queryFn())
         .then((value: any) => {
           this.#dispatch({ type: "success", data: value });
@@ -104,6 +105,10 @@ export class Query<TData = unknown> {
           return {
             ...state,
             fetchStatus: "fetching",
+            ...(!state.dataUpdatedAt && {
+              error: null,
+              status: "pending",
+            }),
           };
         case "success":
           return {
@@ -112,6 +117,7 @@ export class Query<TData = unknown> {
             dataUpdatedAt: action.dataUpdatedAt ?? Date.now(),
             error: null,
             status: "success",
+            fetchStatus: "idle",
           };
         case "error":
           return {

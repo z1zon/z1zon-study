@@ -13,10 +13,8 @@ export const PostList = () => {
     queryFn: getPosts,
   });
 
-  console.log("posts", posts); // testing
-
-  const handleDelete = (id: number) => {
-    deletePost(id);
+  const handleDelete = async (id: number) => {
+    await deletePost(id);
     refetch();
   };
 
