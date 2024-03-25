@@ -166,5 +166,5 @@ function shouldFetchOptionally(
   prevQuery: Query<any>,
   options: QueryObserverOptions<any>
 ) {
-  return options.enabled !== false || query !== prevQuery;
+  return options.enabled !== false && query !== prevQuery;
 }

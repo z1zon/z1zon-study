@@ -78,7 +78,6 @@ export class Query<TData = unknown> {
     });
 
     const run = () => {
-      console.log("run"); // TODO: 무한 호출되지 않도록 수정
       Promise.resolve(this.options.queryFn())
         .then((value: any) => {
           this.#dispatch({ type: "success", data: value });
