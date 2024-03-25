@@ -96,7 +96,7 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     }
 
     this.#currentResult = nextResult;
-    this.#notify(notifyOptions);
+    this.#notify({ notify: notifyOptions?.notify !== false });
   }
 
   getCurrentResult(): QueryObserverResult<TData> {
