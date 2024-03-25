@@ -27,6 +27,7 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     super();
 
     this.#client = client;
+    this.refetch = this.refetch.bind(this);
     this.setOptions(options);
   }
 
@@ -109,11 +110,15 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     return result;
   }
 
-  refetch(): Promise<QueryObserverResult<TData>> {
+  fetch(): Promise<QueryObserverResult<TData>> {
     return this.#executeFetch().then(() => {
       this.updateResult();
       return this.#currentResult;
     });
+  }
+
+  refetch(): Promise<QueryObserverResult<TData>> {
+    return this.fetch();
   }
 
   protected onSubscribe(): void {

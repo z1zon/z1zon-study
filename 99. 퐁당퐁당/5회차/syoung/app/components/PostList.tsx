@@ -4,13 +4,20 @@ import { deletePost, getPosts } from "../apis/posts";
 import { useQuery } from "../modules/react-query/useQuery";
 
 export const PostList = () => {
-  const { data: posts = [], isLoading } = useQuery({
+  const {
+    data: posts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["posts"],
     queryFn: getPosts,
   });
 
+  console.log("posts", posts); // testing
+
   const handleDelete = (id: number) => {
     deletePost(id);
+    refetch();
   };
 
   if (isLoading) {
