@@ -17,12 +17,10 @@ export class QueryCache {
     this.#queries = new Map<string, Query>();
   }
 
-  build<TQueryFnData, TError, TData>(
-    options: QueryOptions
-  ): Query<TQueryFnData, TError, TData> {
+  build<TData>(options: QueryOptions<TData>): Query<TData> {
     const queryKey = options.queryKey;
     const queryHash = hashKey(queryKey);
-    let query = this.get<TQueryFnData, TError, TData>(queryHash);
+    let query = this.get<TData>(queryHash);
 
     if (!query) {
       query = new Query({
@@ -37,13 +35,13 @@ export class QueryCache {
     return query;
   }
 
-  add(query: Query<any, any, any>): void {
+  add(query: Query<any>): void {
     if (!this.#queries.has(query.queryHash)) {
       this.#queries.set(query.queryHash, query);
     }
   }
 
-  remove(query: Query<any, any, any>): void {
+  remove(query: Query<any>): void {
     const queryInMap = this.#queries.get(query.queryHash);
 
     if (queryInMap) {
@@ -57,10 +55,8 @@ export class QueryCache {
     });
   }
 
-  get<TQueryFnData, TError, TData>(queryHash: string) {
-    return this.#queries.get(queryHash) as
-      | Query<TQueryFnData, TError, TData>
-      | undefined;
+  get<TData>(queryHash: string) {
+    return this.#queries.get(queryHash) as Query<TData> | undefined;
   }
 
   getAll() {
