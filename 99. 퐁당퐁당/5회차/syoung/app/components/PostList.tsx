@@ -1,19 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { deletePost, getPosts } from "../apis/posts";
-import { Post } from "../types/posts";
+import { useQuery } from "../modules/react-query/useQuery";
 
 export const PostList = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    getPosts().then((data) => setPosts(data));
-  }, []);
+  const { data: posts = [], isLoading } = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
 
   const handleDelete = (id: number) => {
     deletePost(id);
   };
+
+  if (isLoading) {
+    return <p>loading...</p>;
+  }
 
   return (
     <ul>
