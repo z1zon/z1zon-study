@@ -79,7 +79,7 @@ export class QueryObserver<TData = unknown> extends Subscribable<
       error,
       isError: status === "error",
       isLoading,
-      isSuccess: false,
+      isSuccess: status === "success",
       refetch: this.refetch,
       status,
       fetchStatus,
