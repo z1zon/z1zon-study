@@ -25,6 +25,7 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     public options: QueryObserverOptions<TData>
   ) {
     super();
+    console.log("[QueryObserver] constructor()");
 
     this.#client = client;
     this.refetch = this.refetch.bind(this);
@@ -36,6 +37,7 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     options: QueryObserverOptions<TData>,
     notifyOptions?: NotifyOptions
   ) {
+    console.log("[QueryObserver] setOptions()");
     const prevQuery = this.#currentQuery;
     this.options = options;
 
@@ -55,12 +57,14 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     if (query === this.#currentQuery) {
       return;
     }
+    console.log("[QueryObserver] updateQuery()");
 
     this.#currentQuery = query;
   }
 
   // ⭐️
   #executeFetch(): Promise<TData | undefined> {
+    console.log("[QueryObserver] executeFetch()");
     this.#updateQuery();
 
     return this.#currentQuery.fetch();
@@ -74,6 +78,10 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     const isFetching = fetchStatus === "fetching";
     const isPending = status === "pending";
     const isLoading = isPending && isFetching;
+
+    console.log(
+      `[QueryObserver] createResult() - status='${status}', fetchStatus='${fetchStatus}', `
+    );
 
     return {
       data,
@@ -95,6 +103,8 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     if (shallowEqualObjects(nextResult, prevResult)) {
       return;
     }
+
+    console.log("[QueryObserver] updateResult()");
 
     this.#currentResult = nextResult;
     this.#notify({ notify: notifyOptions?.notify !== false });
@@ -148,6 +158,8 @@ export class QueryObserver<TData = unknown> extends Subscribable<
     if (!notifyOptions?.notify) {
       return;
     }
+
+    console.log("[QueryObserver] notify()");
 
     notifyManager.batch(() => {
       this.listeners.forEach((listener) => {

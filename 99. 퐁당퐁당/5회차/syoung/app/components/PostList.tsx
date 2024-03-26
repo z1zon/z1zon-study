@@ -14,6 +14,7 @@ export const PostList = () => {
   });
 
   const handleDelete = async (id: number) => {
+    console.log("👤 삭제 버튼 클릭 - deletePost(), refetch() 수행");
     await deletePost(id);
     refetch();
   };

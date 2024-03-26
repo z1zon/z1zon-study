@@ -68,6 +68,8 @@ export class Query<TData = unknown> {
       return this.#promise;
     }
 
+    console.log("[Query] fetch() - start 📌");
+
     this.#dispatch({ type: "fetch" });
     let promiseResolve: (data: TData) => void;
     let promiseReject: (error: DefaultError) => void;
@@ -80,6 +82,8 @@ export class Query<TData = unknown> {
     const run = () => {
       Promise.resolve(this.options.queryFn())
         .then((value: any) => {
+          console.log("[Query] fetch() - success ✅");
+          console.log("[Query] ⭐️ data : ", value);
           this.#dispatch({ type: "success", data: value });
           promiseResolve(value);
         })
