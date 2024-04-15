@@ -1,5 +1,6 @@
 import UseStatusForm from "./components/UseStatusForm";
 import UseStateForm from "./components/UseStateForm";
+import Optimistic from "./components/Optimistic/Optimistic";
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
       <section>
         <h1>use form state</h1>
         <UseStateForm />
+      </section>
+      <section>
+        <h1>use optimistic</h1>
+        <Optimistic />
       </section>
     </div>
   );
